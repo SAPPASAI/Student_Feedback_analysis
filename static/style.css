@@ -19,27 +19,82 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 60px;
+    padding: 16px 60px;
     background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
     font-size: 18px;
     font-weight: 700;
     color: #111827;
+    letter-spacing: 0.5px;
 }
 
-.nav-links a {
-    margin-left: 20px;
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-item {
     text-decoration: none;
     color: #374151;
     font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
 }
 
-.nav-links a:hover {
+/* Hover effect */
+.nav-item:hover {
+    background-color: #f1f5f9;
     color: #2563eb;
 }
+
+/* Active page */
+.nav-item.active {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Primary CTA button */
+.primary-btn {
+    background: #2563eb;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+}
+
+.primary-btn:hover {
+    background: #1e40af;
+    color: #ffffff;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 14px 20px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-item {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
 
 /* =========================
    PROJECT TITLE
@@ -269,3 +324,5 @@ body {
         font-size: 32px;
     }
 }
+
+
