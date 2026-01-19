@@ -1,16 +1,26 @@
 from flask import Flask, render_template, request
 from utils.predict import predict_sentiment
+import matplotlib
+matplotlib.use("Agg")
 import pandas as pd
 import os
 from datetime import datetime
-import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-import re
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 app = Flask(__name__)
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(STATIC_DIR, exist_ok=True)
+
+FEEDBACK_FILE = os.path.join(DATA_DIR, "collected_feedback.csv")
 
 # This file is ONLY for collected feedback (not training data)
 FEEDBACK_FILE = "data/collected_feedback.csv"
@@ -151,5 +161,7 @@ def admin_dashboard():
     )
 
 
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=5000, debug=True)
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run()
