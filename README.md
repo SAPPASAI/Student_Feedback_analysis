@@ -93,35 +93,43 @@ sentiment-feedback-app/
     ├── student.html
     ├── result.html
     └── admin.html
+```
+---
 
 ## 🚀 Getting Started (Local Setup)
 
 Follow the steps below to run the project locally.
-
-### 1️⃣ Clone the Repository
 ```bash
+### 1️⃣ Clone the Repository
+
 git clone https://github.com/your-username/student-feedback-analysis.git
 cd student-feedback-analysis
+```
 ### 2️⃣ Create a Virtual Environment
+```bash
 bash
 Copy code
 python -m venv venv
+```
 ### 3️⃣ Activate the Virtual Environment
+```bash
 Windows
-
 bash
 Copy code
 venv\Scripts\activate
 macOS / Linux
-
 bash
 Copy code
 source venv/bin/activate
+```
 ### 4️⃣ Install Dependencies
+```bash
 bash
 Copy code
 pip install -r requirements.txt
+```
 ### 5️⃣ Run the Application
+```bash
 bash
 Copy code
 python app.py
@@ -130,7 +138,10 @@ Open your browser and visit:
 cpp
 Copy code
 http://127.0.0.1:5000
+```
+---
 ### 📦 Dependencies
+
 Flask
 
 gunicorn
@@ -151,7 +162,9 @@ qrcode
 
 pillow
 
+---
 ### 🧠 How It Works
+
 Students submit textual feedback
 
 Feedback is vectorized using a trained ML pipeline
@@ -162,7 +175,9 @@ Feedback is stored in a CSV file
 
 Admin dashboard displays statistics and word clouds
 
+---
 ### ⚠️ Notes & Limitations
+
 Render uses an ephemeral filesystem
 
 CSV data may reset on redeployment
@@ -177,7 +192,9 @@ Demonstrations
 
 For production use, replace CSV storage with PostgreSQL.
 
+---
 ### ☁️ Deployment (Render)
+```bash
 Build Command
 bash
 Copy code
@@ -187,7 +204,9 @@ bash
 Copy code
 gunicorn app:app
 
-
+```
+---
 ### 📜 License
+
 This project is licensed for educational use.
 You are free to modify and extend it for learning and academic demonstrations.
