@@ -1,18 +1,20 @@
 from flask import Flask, render_template, request
 from utils.predict import predict_sentiment
+
 import matplotlib
 matplotlib.use("Agg")
+
 import pandas as pd
 import os
 from datetime import datetime
-import seaborn as sns
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+import re
 
 app = Flask(__name__)
 
-
+# ---------------- PATH SETUP ----------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
@@ -22,10 +24,7 @@ os.makedirs(STATIC_DIR, exist_ok=True)
 
 FEEDBACK_FILE = os.path.join(DATA_DIR, "collected_feedback.csv")
 
-# This file is ONLY for collected feedback (not training data)
-FEEDBACK_FILE = "data/collected_feedback.csv"
-
-# Create feedback file only once if it does not exist
+# ---------------- INIT CSV ----------------
 if not os.path.exists(FEEDBACK_FILE):
     df_init = pd.DataFrame(columns=[
         "Timestamp",
@@ -34,12 +33,12 @@ if not os.path.exists(FEEDBACK_FILE):
     ])
     df_init.to_csv(FEEDBACK_FILE, index=False)
 
-# ---------------- HOME PAGE ------------------
+# ---------------- HOME PAGE ----------------
 @app.route("/")
 def home():
     return render_template("home.html")
 
-# ---------------- STUDENT PAGE ------------------
+# ---------------- STUDENT PAGE ----------------
 @app.route("/student")
 def student_page():
     return render_template("student.html")
@@ -56,13 +55,9 @@ def submit_feedback():
         request.form["q5"]
     ]
 
-    # Combine all answers into one feedback text
     combined_feedback = ". ".join(answers)
-
-    # Predict sentiment using trained model
     sentiment = predict_sentiment(combined_feedback)
 
-    # Append feedback (DO NOT overwrite)
     df = pd.read_csv(FEEDBACK_FILE)
     df.loc[len(df)] = [
         datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -80,13 +75,9 @@ def submit_feedback():
 # ---------------- ADMIN PAGE ----------------
 @app.route("/admin")
 def admin_dashboard():
-    import re
-    from wordcloud import WordCloud
-    from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
     df = pd.read_csv(FEEDBACK_FILE)
 
-    # Handle empty feedback case
     if df.empty:
         return render_template(
             "admin.html",
@@ -96,22 +87,19 @@ def admin_dashboard():
             negative=0
         )
 
-    # ---------------- SENTIMENT COUNTS ----------------
     sentiment_counts = df["Sentiment"].value_counts()
-
     total = len(df)
     positive = sentiment_counts.get("Positive", 0)
     neutral = sentiment_counts.get("Neutral", 0)
     negative = sentiment_counts.get("Negative", 0)
 
-    # ---------------- TEXT CLEANING ----------------
+    # -------- TEXT CLEANING --------
     def clean_text(text):
         text = text.lower()
         text = re.sub(r"[^a-z\s]", "", text)
         words = [w for w in text.split() if len(w) > 3]
         return " ".join(words)
 
-    # ---------------- STOPWORDS ----------------
     common_stopwords = set(ENGLISH_STOP_WORDS)
 
     extra_stopwords = {
@@ -129,9 +117,9 @@ def admin_dashboard():
         "concept", "concepts"
     }
 
-    all_stopwords = common_stopwords.union(extra_stopwords).union(domain_stopwords)
+    all_stopwords = common_stopwords | extra_stopwords | domain_stopwords
 
-    # ---------------- WORD CLOUD GENERATION ----------------
+    # -------- WORD CLOUD GENERATION --------
     for sentiment in ["Positive", "Neutral", "Negative"]:
 
         sentiment_text = " ".join(
@@ -149,9 +137,8 @@ def admin_dashboard():
                 collocations=False
             ).generate(sentiment_text)
 
-            wc.to_file(f"static/{sentiment.lower()}_wc.png")
+            wc.to_file(os.path.join(STATIC_DIR, f"{sentiment.lower()}_wc.png"))
 
-    # ---------------- RENDER ADMIN PAGE ----------------
     return render_template(
         "admin.html",
         total=total,
@@ -160,8 +147,5 @@ def admin_dashboard():
         negative=negative
     )
 
-
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=5000, debug=True)
 if __name__ == "__main__":
     app.run()

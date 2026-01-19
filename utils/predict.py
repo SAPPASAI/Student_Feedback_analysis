@@ -1,23 +1,23 @@
-import pickle
-import string
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+import os
+import joblib
 
-stop_words = set(stopwords.words('english'))
-lemmatizer = WordNetLemmatizer()
+# ---------- PATH SETUP ----------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_DIR = os.path.join(BASE_DIR, "model")
 
-model = pickle.load(open("model/sentiment_model.pkl", "rb"))
-vectorizer = pickle.load(open("model/vectorizer.pkl", "rb"))
+MODEL_PATH = os.path.join(MODEL_DIR, "sentiment_model.pkl")
+VECTORIZER_PATH = os.path.join(MODEL_DIR, "vectorizer.pkl")
 
-def preprocess(text):
-    text = text.lower()
-    text = text.translate(str.maketrans('', '', string.punctuation))
-    words = text.split()
-    words = [w for w in words if w not in stop_words]
-    words = [lemmatizer.lemmatize(w) for w in words]
-    return " ".join(words)
+# ---------- LOAD MODEL ----------
+model = joblib.load(MODEL_PATH)
+vectorizer = joblib.load(VECTORIZER_PATH)
 
-def predict_sentiment(feedback):
-    clean_text = preprocess(feedback)
-    vec = vectorizer.transform([clean_text])
-    return model.predict(vec)[0]
+# ---------- PREDICTION ----------
+def predict_sentiment(feedback: str):
+    """
+    Predict sentiment for a given feedback string
+    """
+    feedback = feedback.lower()
+    vec = vectorizer.transform([feedback])
+    prediction = model.predict(vec)[0]
+    return prediction
