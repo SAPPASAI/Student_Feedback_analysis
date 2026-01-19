@@ -1,0 +1,271 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #374151;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* =========================
+   PROJECT TITLE
+========================= */
+.project-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: #f97316;
+    margin: 30px 0 20px;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero-bg {
+    position: relative;
+    padding: 40px 20px 260px;
+    background: #f4f6fb;
+}
+
+/* Dark base */
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(to top, #0f172a, #1e293b);
+    z-index: 0;
+}
+
+/* =========================
+   HERO CARD
+========================= */
+.hero-card {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-card h1 {
+    font-size: 44px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.2;
+}
+
+.hero-card h1 span {
+    color: #2563eb;
+}
+
+.hero-text {
+    margin-top: 25px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #374151;
+    text-align: justify;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.hero-buttons {
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.btn.primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #1d4ed8;
+}
+
+.btn.secondary {
+    background: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+}
+
+.btn.secondary:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* =========================
+   QR SECTION
+========================= */
+.qr-section {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.qr-section h3 {
+    margin-bottom: 5px;
+    color: #2563eb;
+}
+
+.qr-section p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   STUDENT PAGE
+========================= */
+.chat-page {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+.chat-card {
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.chat-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #2563eb;
+}
+
+.chat-card textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    height: 60px;
+    resize: none;
+}
+
+.bot-msg {
+    margin: 20px 0 8px;
+    font-weight: 500;
+}
+
+/* =========================
+   RESULT PAGE
+========================= */
+.result-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+.result-card {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* =========================
+   ADMIN STATISTICS
+========================= */
+.stat-box {
+    background: #f8fafc;
+    padding: 20px 30px;
+    border-radius: 14px;
+    text-align: center;
+    min-width: 150px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.stat-box h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.stat-box p {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.stat-box.positive p { color: #16a34a; }
+.stat-box.neutral p  { color: #ca8a04; }
+.stat-box.negative p { color: #dc2626; }
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .hero-card {
+        padding: 40px 25px;
+    }
+
+    .hero-card h1 {
+        font-size: 32px;
+    }
+}

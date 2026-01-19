@@ -1,0 +1,114 @@
+==============================
+STUDENT FEEDBACK SENTIMENT ANALYSIS
+HOW TO RUN THE PROJECT
+==============================
+
+1. CREATE VIRTUAL ENVIRONMENT (RECOMMENDED)
+------------------------------------------
+python -m venv venv
+
+Activate:
+Windows:
+venv\Scripts\activate
+
+Mac / Linux:
+source venv/bin/activate
+
+
+2. INSTALL REQUIRED PACKAGES
+----------------------------
+pip install -r requirements.txt
+
+
+3. PROJECT STRUCTURE (MUST BE SAME)
+----------------------------------
+project/
+│
+├── app.py
+├── generate_qr.py
+├── requirements.txt
+│
+├── data/
+│   └── collected_feedback.csv
+│
+├── static/
+│   ├── style.css
+│   └── feedback_qr.png
+│
+├── templates/
+│   ├── home.html
+│   ├── student.html
+│   ├── admin.html
+│   └── result.html
+│
+└── utils/
+    └── predict.py
+
+
+4. FIND YOUR SYSTEM IP ADDRESS (VERY IMPORTANT)
+----------------------------------------------
+Windows:
+ipconfig
+
+Mac / Linux:
+ifconfig
+
+Look for IPv4 Address:
+Example: 192.168.1.2
+
+
+5. UPDATE QR CODE URL
+--------------------
+Open generate_qr.py and change ONLY this line:
+
+WRONG:
+url = "http://localhost:5000/student"
+
+CORRECT:
+url = "http://YOUR_IP_ADDRESS:5000/student"
+
+Example:
+url = "http://192.168.1.2:5000/student"
+
+
+6. GENERATE QR CODE
+------------------
+python generate_qr.py
+
+This creates:
+static/feedback_qr.png
+
+
+7. RUN THE FLASK APPLICATION
+----------------------------
+python app.py
+
+Make sure app.py contains:
+app.run(host="0.0.0.0", port=5000, debug=True)
+
+
+8. OPEN APPLICATION
+-------------------
+On Laptop:
+Home Page:
+http://localhost:5000
+
+Admin Page:
+http://localhost:5000/admin
+
+On Mobile Phone (same Wi-Fi):
+Scan QR Code OR open:
+http://YOUR_IP_ADDRESS:5000/student
+
+
+IMPORTANT NOTES
+---------------
+- Laptop and mobile must be on the SAME Wi-Fi
+- Do NOT use localhost on phone
+- Use http (not https)
+- No app required on phone
+- Ignore "Bad request version" logs (normal)
+
+==============================
+END
+==============================

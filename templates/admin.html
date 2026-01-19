@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">AI & ML WORKSHOP – ADMIN</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/student">Student</a>
+    </div>
+</div>
+
+<!-- ADMIN CONTENT -->
+<div class="hero-bg">
+    <div class="hero-card wide">
+
+        <h2>Feedback Statistics</h2>
+
+        <!-- STATISTICS CARDS -->
+        <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:30px;">
+
+            <div class="stat-box">
+                <h3>Total Feedback</h3>
+                <p>{{ total }}</p>
+            </div>
+
+            <div class="stat-box positive">
+                <h3>Positive</h3>
+                <p>{{ positive }}</p>
+            </div>
+
+            <div class="stat-box neutral">
+                <h3>Neutral</h3>
+                <p>{{ neutral }}</p>
+            </div>
+
+            <div class="stat-box negative">
+                <h3>Negative</h3>
+                <p>{{ negative }}</p>
+            </div>
+
+        </div>
+
+        <p style="margin-top:30px; font-size:14px; color:#555;">
+            Statistics are updated in real time as students submit feedback.
+        </p>
+
+        <!-- WORD CLOUD SECTION -->
+        <h3 style="margin-top:50px;">Sentiment-wise Feedback Word Clouds</h3>
+
+        <div style="display:flex; gap:30px; flex-wrap:wrap; justify-content:center; margin-top:25px;">
+
+            <!-- POSITIVE WORD CLOUD -->
+            <div class="stat-box">
+                <h4 style="color:#16a34a;">Positive Feedback</h4>
+                <img src="/static/positive_wc.png" alt="Positive Word Cloud" width="250">
+            </div>
+
+            <!-- NEUTRAL WORD CLOUD -->
+            <div class="stat-box">
+                <h4 style="color:#ca8a04;">Neutral Feedback</h4>
+                <img src="/static/neutral_wc.png" alt="Neutral Word Cloud" width="250">
+            </div>
+
+            <!-- NEGATIVE WORD CLOUD -->
+            <div class="stat-box">
+                <h4 style="color:#dc2626;">Negative Feedback</h4>
+                <img src="/static/negative_wc.png" alt="Negative Word Cloud" width="250">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

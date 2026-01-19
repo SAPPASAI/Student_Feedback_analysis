@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Feedback</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">AI & ML WORKSHOP</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/student">Student</a>
+        <a href="/admin">Admin</a>
+    </div>
+</div>
+
+<!-- STUDENT FEEDBACK CARD -->
+<div class="chat-page">
+
+    <div class="chat-card">
+
+        <h2 class="chat-title">WORKSHOP FEEDBACK CHAT</h2>
+
+        <p style="text-align:center; font-size:14px; margin-bottom:15px;">
+            Please share your honest feedback about the AI & ML training program.
+            Your responses are anonymous and will help improve future sessions.
+        </p>
+
+        <form method="POST" action="/submit">
+
+            <!-- QUESTIONS -->
+            <div class="bot-msg">
+                Q1. How would you describe your overall experience with the AI & Machine Learning training program?
+            </div>
+            <textarea name="q1" placeholder="Type your answer here..." required></textarea>
+
+            <div class="bot-msg">
+                Q2. How clear and understandable were the concepts related to AI and Machine Learning during the sessions?
+            </div>
+            <textarea name="q2" placeholder="Type your answer here..." required></textarea>
+
+            <div class="bot-msg">
+                Q3. Which topics or algorithms did you find most useful or interesting in this training?
+                <br><small>(Example: Supervised ML, Unsupervised ML, specific algorithms, projects)</small>
+            </div>
+            <textarea name="q3" placeholder="Type your answer here..." required></textarea>
+
+            <div class="bot-msg">
+                Q4. What challenges or difficulties did you face while learning AI and Machine Learning concepts?
+            </div>
+            <textarea name="q4" placeholder="Type your answer here..." required></textarea>
+
+            <div class="bot-msg">
+                Q5. Do you have any suggestions or feedback to improve future AI & ML training programs?
+            </div>
+            <textarea name="q5" placeholder="Type your answer here..." required></textarea>
+
+            <button type="submit" class="btn primary submit-btn">
+                Submit Feedback
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
